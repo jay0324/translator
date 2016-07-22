@@ -33,8 +33,10 @@ $.JTranslator = function (options) {
 													$lang,
 													options.$langVar[$lang]
 												);
-					window.location = newlocation;
-					return false;
+					if (newlocation != "#") {
+						window.location = newlocation;
+						return false;
+					}
 				}
 		})
 
@@ -48,8 +50,10 @@ $.JTranslator = function (options) {
 											   	$lang,
 											   	options.$langVar[$lang]
 											);
-				window.location = newlocation;
-				return false;
+				if (newlocation != "#") {
+					window.location = newlocation;
+					return false;
+				}
 			}
 		})
 
@@ -92,10 +96,15 @@ $.JTranslator = function (options) {
 				$checkPath = $url.split($root)[1];
 
 				for (var $v in $customPage[$k]) {
-					if ($checkPath === $customPage[$k][$v]){
-						return $rootPath+$customPage[$k][$reqLang];
-					}else if ($checkPath === "/"+$customPage[$k][$v]){
-						return $rootPath+"/"+$customPage[$k][$reqLang];
+					if ($customPage[$k][$reqLang] != "#") {
+						//如果轉址為"#",不做任何動作
+						if ($checkPath === $customPage[$k][$v]){
+							return $rootPath+$customPage[$k][$reqLang];
+						}else if ($checkPath === "/"+$customPage[$k][$v]){
+							return $rootPath+"/"+$customPage[$k][$reqLang];
+						}
+					}else{
+						return "#";
 					}
 				}
 			}
