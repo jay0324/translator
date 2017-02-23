@@ -20,7 +20,7 @@
 
 下面示範例:
 $.JTranslator({
-	$root: 'example', 					//根目錄 (ex: http://localhost/test/ => $root: "/test/")
+	$root: 'example', 					//根目錄 (ex: http://localhost/test/ => $root: "/test/" 正式環境下設定為 window.location.host+"/")
 	$defaultOption: "en",				//預設langVar的key
 	$langSwitchNode: "a",				//語言選項的標籤類型
 	$langVar: {
@@ -40,6 +40,22 @@ $.JTranslator({
 		}
 	}
 })
+
+
+3. 如果其中語系是在根目錄,設定如下
+$(function(){
+	var $lang_root = '/root_folder/';
+	$.JTranslator({
+		$root: $lang_root,
+		$langSwitchNode: "a",
+		$langVar: {
+			en: window.location.host+$lang_root+"en/",
+			cn: window.location.host+$lang_root+"zh-cn/",
+			tw: window.location.host+$lang_root,
+		}
+	})
+})
+
 
 =====================================================================================================
 範例的網站架構為:

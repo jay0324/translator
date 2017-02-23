@@ -33,6 +33,7 @@ $.JTranslator = function (options) {
 													$lang,
 													options.$langVar[$lang]
 												);
+					//console.log(newlocation);
 					if (newlocation != "#") {
 						window.location = newlocation;
 						return false;
@@ -111,8 +112,12 @@ $.JTranslator = function (options) {
 			
 			//2. 檢查統一導向規則
 			for (var $k in $langVar) {
-				if ($url.indexOf($langVar[$k]) != -1 && $langVar[$k] != $reqLangVar) {
-					return $url.replace($langVar[$k],$reqLangVar);
+				if ($url.indexOf($langVar[$k]) != -1) {
+					if ($k != $reqLang) {
+						return $url.replace($langVar[$k],$reqLangVar);
+					}else{
+						return $url;
+					}
 				}
 			}
 			
