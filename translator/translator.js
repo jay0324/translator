@@ -22,7 +22,7 @@ $.JTranslator = function (options) {
 								options.$langVar
 							);
 		
-		$("a").click(function(){
+		$("a").on('click', function(){
 				if ($(this).attr('lg') !== undefined){
 					$lang = $(this).attr("lg");//取得按鈕判斷值
 					newlocation = fnURLrewrite(
@@ -38,6 +38,7 @@ $.JTranslator = function (options) {
 						window.location = newlocation;
 						return false;
 					}
+
 				}
 		})
 
